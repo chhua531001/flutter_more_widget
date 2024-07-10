@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more_widget/app_routes.dart';
+import 'package:flutter_more_widget/custom_scroll_view_page.dart';
+import 'package:flutter_more_widget/grid_view_page.dart';
 import 'package:flutter_more_widget/widgets/app_layoutbuilder_widget.dart';
 import 'package:flutter_more_widget/widgets/big_circle.dart';
 import 'package:flutter_more_widget/widgets/big_dot.dart';
+import 'package:flutter_more_widget/widgets/circle_dot.dart';
 import 'package:flutter_more_widget/widgets/half_circle.dart';
 
 void main() {
@@ -36,7 +40,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const CustomScrollViewPage(),
+      routes: {
+        AppRoutes.homePage: (context) =>
+            const MyHomePage(title: 'Flutter Demo Home Page'),
+        AppRoutes.customScrollViewPage: (context) =>
+            const CustomScrollViewPage(),
+        AppRoutes.gridViewPage: (context) => const GridViewPage(),
+      },
     );
   }
 }
@@ -60,11 +72,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("More Widgets"),
       ),
       body: content(),
@@ -94,7 +106,46 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-
+          const SizedBox(
+            height: 20,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleDot(),
+                CircleDot(),
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.customScrollViewPage,
+                arguments: {
+                  "index": 1,
+                },
+              );
+            },
+            child: const Text("CustomScrollViewDemo"),
+          ),
+          const SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.gridViewPage,
+                arguments: {
+                  "index": 2,
+                },
+              );
+            },
+            child: const Text("GridViewDemo"),
+          ),
         ],
       ),
     );
