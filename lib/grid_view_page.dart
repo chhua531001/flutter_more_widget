@@ -25,23 +25,33 @@ class GridViewPage extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  //以下是方法1:
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                      "https://via.placeholder.com/215x200",
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                  ),
-              //以下是方法2:
-              // clipBehavior: Clip.hardEdge,
-              // child: Image.network(
-              //   "https://via.placeholder.com/200x215",
-              //   fit: BoxFit.cover,
-              // ),
+            // child: Container(
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(8),
+            //     //以下是方法1-放在背景:
+            //     // image: const DecorationImage(
+            //     //   image: NetworkImage(
+            //     //     "https://via.placeholder.com/215x200",
+            //     //   ),
+            //     //   fit: BoxFit.cover,
+            //     // ),
+            //   ),
+            //   //以下是方法2-直接放入圖片到Container中:
+            //   //圖片若是放入有BorderRadius的Container時，沒有作任何Padding時，
+            //   //需要加入clipBehavior: Clip.hardEdge，才會配合
+            //   // clipBehavior: Clip.hardEdge,
+            //   // child: Image.network(
+            //   //   "https://via.placeholder.com/200x215",
+            //   //   fit: BoxFit.cover,
+            //   // ),
+            // ),
+            //以下是方法3-直接放入圖片:使用ClipRRect來作圖片的BorderRadius
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                "https://via.placeholder.com/200x215",
+                fit: BoxFit.cover,
+              ),
             ),
           );
         },

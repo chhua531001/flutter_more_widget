@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more_widget/widgets/picture_with_text.dart';
 
 // class CustomScrollViewPage extends StatefulWidget {
 //   const CustomScrollViewPage({super.key});
@@ -131,16 +132,9 @@ class CustomScrollViewPage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: Image.network(
-                      "https://via.placeholder.com/200x200",
-                      fit: BoxFit.cover,
-                    ),
+                  return PictureWithText(
+                    picPath: "https://via.placeholder.com/200x200",
+                    text: "INDEX $index",
                   );
                 },
               ),
