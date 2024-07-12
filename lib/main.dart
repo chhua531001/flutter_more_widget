@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more_widget/animated_menu_page.dart';
+import 'package:flutter_more_widget/animated_search_bar_page.dart';
 import 'package:flutter_more_widget/app_routes.dart';
 import 'package:flutter_more_widget/custom_scroll_view_page.dart';
 import 'package:flutter_more_widget/grid_view_page.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.customScrollViewPage: (context) =>
             const CustomScrollViewPage(),
         AppRoutes.gridViewPage: (context) => const GridViewPage(),
+        AppRoutes.animatesSearchBarPage: (context) => const AnimatedSearchBarPage(),
+        AppRoutes.animatedMenuPage: (context) => const AnimatedMenuPage(),
       },
     );
   }
@@ -145,6 +149,34 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
             child: const Text("GridViewDemo"),
+          ),
+          const SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.animatesSearchBarPage,
+                arguments: {
+                  "index": 3,
+                },
+              );
+            },
+            child: const Text("AnimatedSearchBarDemo"),
+          ),
+          const SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.animatedMenuPage,
+                arguments: {
+                  "index": 4,
+                },
+              );
+            },
+            child: const Text("AnimatedMenuDemo"),
           ),
         ],
       ),
