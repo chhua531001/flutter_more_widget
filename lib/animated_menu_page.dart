@@ -29,11 +29,13 @@ class _AnimatedMenuPageState extends State<AnimatedMenuPage>
 
   @override
   void initState() {
+    // var intValue = math.Random().nextInt(100);
+    // debugPrint("intValue -> $intValue");
     super.initState();
     // TODO: implement initState
     //Initializing the _animationController with a duration
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
     //Curve animation to apply easing effect
     final curvedAnimation = CurvedAnimation(
       parent: _animationController,
@@ -79,7 +81,7 @@ class _AnimatedMenuPageState extends State<AnimatedMenuPage>
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("AnimatedSearchBar Demo"),
+        title: const Text("AnimatedMenu Demo"),
       ),
       body: Center(
         //inside this area, we have perform
@@ -106,15 +108,24 @@ class _AnimatedMenuPageState extends State<AnimatedMenuPage>
             _alignAnimation.value,
             _alignAnimation.value,
           ),
-          child: Container(
-            height: _scaleAnimation.value,
-            width: _scaleAnimation.value,
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
+          //在Container上增加Material，就可以設定讓Container有深度，但是要注意borderRadius
+          //需要與Container一致
+          child: Material(
+            elevation: 10,
+            borderRadius: BorderRadius.circular(_borderRadiusAnimation.value),
+            //加入clipBehavior: Clip.hardEdge後，Container就不需要有borderRadius
+            clipBehavior: Clip.hardEdge,
+            child: Container(
+              height: _scaleAnimation.value,
+              width: _scaleAnimation.value,
+              padding: const EdgeInsets.all(8.0),
               color: Colors.white,
-              borderRadius: BorderRadius.circular(_borderRadiusAnimation.value),
+              // decoration: BoxDecoration(
+              //   color: Colors.white,
+              //   borderRadius: BorderRadius.circular(_borderRadiusAnimation.value),
+              // ),
+              child: child,
             ),
-            child: child,
           ),
         );
       },
@@ -164,7 +175,7 @@ class _AnimatedMenuPageState extends State<AnimatedMenuPage>
             _animationController.value,
             _animationController.value,
           ),
-          child: InkWell(
+          child: GestureDetector(
             onTap: () {
               toggleMenu();
             },

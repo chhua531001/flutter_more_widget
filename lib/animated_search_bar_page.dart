@@ -35,100 +35,109 @@ class _AnimatedSearchBarPageState extends State<AnimatedSearchBarPage>
       ),
       body: SizedBox(
         child: Center(
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 400),
-            width: isExpanded ? 280 : 50,
-            height: 50,
-            decoration: BoxDecoration(
+          //在Container上增加Material，就可以設定讓Container有深度，但是要注意borderRadius
+          //需要與Container一致
+          child: Material(
+            elevation: 10,
+            borderRadius: BorderRadius.circular(30),
+            //加入clipBehavior: Clip.hardEdge後，Container就不需要有borderRadius
+            clipBehavior: Clip.hardEdge,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 400),
+              width: isExpanded ? 280 : 50,
+              height: 50,
               color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  spreadRadius: -5,
-                  blurRadius: 5,
-                  offset: Offset(0, 7),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isExpanded = !isExpanded; //toggle this isExpanded
-                        if (isExpanded) {
-                          _animationController
-                              .forward(); //start the mic rotation animation
-                        } else {
-                          FocusScope.of(context).unfocus();
-                          _textEditingController.clear();
-                          _animationController
-                              .reverse(); //reverse the mic rotation animation
-                        }
-                      });
-                    },
-                    child: const Icon(
-                      Icons.search,
-                      size: 30,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedOpacity(
-                    opacity: isExpanded
-                        ? 1
-                        : 0, //change opacity base on isExpanded value, initial value is 0 after isExpanded value is 1
-                    duration: const Duration(milliseconds: 200),
-                    child: TextField(
-                      controller: _textEditingController,
-                      cursorRadius: const Radius.circular(10),
-                      cursorWidth: 2,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        labelText: "Search...",
-                        labelStyle: const TextStyle(
-                          fontSize: 17,
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        alignLabelWithHint: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none,
-                        ),
+              // decoration: const BoxDecoration(
+              //   color: Colors.white,
+              //   borderRadius: BorderRadius.circular(30),
+              //   boxShadow: [
+              //     BoxShadow(
+              //       color: Colors.black26,
+              //       spreadRadius: -5,
+              //       blurRadius: 5,
+              //       offset: Offset(0, 7),
+              //     ),
+              //   ],
+              // ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isExpanded = !isExpanded; //toggle this isExpanded
+                          if (isExpanded) {
+                            _animationController
+                                .forward(); //start the mic rotation animation
+                          } else {
+                            FocusScope.of(context).unfocus();
+                            _textEditingController.clear();
+                            _animationController
+                                .reverse(); //reverse the mic rotation animation
+                          }
+                        });
+                      },
+                      child: const Icon(
+                        Icons.search,
+                        size: 30,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Visibility(
-                      visible: isExpanded,  //Visibility base on isExpanded value
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: AnimatedBuilder(
-                          animation: _animationController,
-                          builder: (context, child) {
-                            return Transform.rotate(
-                              angle: _animationController.value * 2 * pi,
-                              child: child,
-                            );
-                          },
-                          child: const Icon(
-                            Icons.mic,
-                            size: 20,
+                  Expanded(
+                    child: AnimatedOpacity(
+                      opacity: isExpanded
+                          ? 1
+                          : 0, //change opacity base on isExpanded value, initial value is 0 after isExpanded value is 1
+                      duration: const Duration(milliseconds: 200),
+                      child: TextField(
+                        controller: _textEditingController,
+                        cursorRadius: const Radius.circular(10),
+                        cursorWidth: 2,
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          labelText: "Search...",
+                          labelStyle: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          alignLabelWithHint: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide.none,
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Visibility(
+                        visible: isExpanded,  //Visibility base on isExpanded value
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: AnimatedBuilder(
+                            animation: _animationController,
+                            builder: (context, child) {
+                              return Transform.rotate(
+                                angle: _animationController.value * 2 * pi,
+                                child: child,
+                              );
+                            },
+                            child: const Icon(
+                              Icons.mic,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

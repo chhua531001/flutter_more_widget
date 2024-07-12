@@ -1,3 +1,4 @@
+// import 'dart:math';
 import 'package:flutter/material.dart';
 
 class GridViewPage extends StatelessWidget {
@@ -49,7 +50,9 @@ class GridViewPage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                "https://via.placeholder.com/200x215",
+                // "https://via.placeholder.com/200x215",
+                // "https://picsum.photos/200/215?random=${Random().nextInt(1000)}",
+                "https://picsum.photos/200/215?random=$index",
                 fit: BoxFit.cover,
               ),
             ),

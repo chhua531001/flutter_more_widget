@@ -1,3 +1,4 @@
+// import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_more_widget/widgets/picture_with_text.dart';
 
@@ -63,7 +64,8 @@ class CustomScrollViewPage extends StatelessWidget {
                 children: [
                   Positioned.fill(
                     child: Image.network(
-                      "https://via.placeholder.com/600x400",
+                      // "https://via.placeholder.com/600x400",
+                      "https://picsum.photos/600/400",
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -133,7 +135,9 @@ class CustomScrollViewPage extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return PictureWithText(
-                    picPath: "https://via.placeholder.com/200x200",
+                    // picPath: "https://via.placeholder.com/200x200",
+                    // picPath: "https://picsum.photos/200?random=${Random().nextInt(500)}",
+                    picPath: "https://picsum.photos/200?random=$index",
                     text: "INDEX $index",
                   );
                 },
