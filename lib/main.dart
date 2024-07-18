@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more_widget/alert_dialog_page.dart';
 import 'package:flutter_more_widget/animated_menu_page.dart';
 import 'package:flutter_more_widget/animated_search_bar_page.dart';
 import 'package:flutter_more_widget/app_routes.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_more_widget/widgets/big_circle.dart';
 import 'package:flutter_more_widget/widgets/big_dot.dart';
 import 'package:flutter_more_widget/widgets/circle_dot.dart';
 import 'package:flutter_more_widget/widgets/half_circle.dart';
+import 'package:flutter_more_widget/wrap_widget_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.gridViewPage: (context) => const GridViewPage(),
         AppRoutes.animatesSearchBarPage: (context) => const AnimatedSearchBarPage(),
         AppRoutes.animatedMenuPage: (context) => const AnimatedMenuPage(),
+        AppRoutes.alertDialogPage: (context) => const AlertDialogPage(),
+        AppRoutes.wrapPage: (context) => const WrapWidgetPage(),
       },
     );
   }
@@ -177,6 +181,34 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
             child: const Text("AnimatedMenuDemo"),
+          ),
+          const SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.alertDialogPage,
+                arguments: {
+                  "index": 4,
+                },
+              );
+            },
+            child: const Text("AlertDialogDemo"),
+          ),
+          const SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              //傳送參數到想顯示的頁面
+              Navigator.pushNamed(
+                context,
+                AppRoutes.wrapPage,
+                arguments: {
+                  "index": 4,
+                },
+              );
+            },
+            child: const Text("WrapWidgetDemo"),
           ),
         ],
       ),
