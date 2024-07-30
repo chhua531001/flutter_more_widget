@@ -5,5 +5,8 @@ class AppRoutes {
   static const animatesSearchBarPage = "/animated_search_bar_page";
   static const animatedMenuPage = "/animated_manu_page";
   static const alertDialogPage = "/alert_dialog_page";
+  static const simpleDialogPage = "/simple_dialog_page";
   static const wrapPage = "/wrap_widget_page";
+  static const responsiveNavbar = "/responsive_navbar";
+  static const audioPlayer = "/audio_player";
 }
