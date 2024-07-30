@@ -21,30 +21,36 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
 
     // Listens for duration changes and updates the state
     _audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
+      if(mounted) {
+        setState(() {
+          duration = newDuration;
+        });
+      }
     });
 
     // Listens for position changes and updates the state
     _audioPlayer.onPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition;
-      });
+      if(mounted) {
+        setState(() {
+          position = newPosition;
+        });
+      }
     });
 
     // Listens for when the audio finishes playing and resets the state
     _audioPlayer.onPlayerComplete.listen((event) {
-      setState(() {
-        isPlaying = false;
-        position = Duration.zero;
-      });
+      if (mounted) {
+        setState(() {
+          isPlaying = false;
+          position = Duration.zero;
+        });
+      }
     });
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose(); // Disposes the AudioPlayer to free resources
+      _audioPlayer.dispose(); // Disposes the AudioPlayer to free resources
     super.dispose();
   }
 
