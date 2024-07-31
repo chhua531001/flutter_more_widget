@@ -61,9 +61,9 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
     } else {
       await _audioPlayer.play(
         // audio from network
-        UrlSource("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"),
-        // audio from ntwork
-        // AssetSource("audio/audio1.mp3"),
+        // UrlSource("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"),
+        // audio from Assets
+        AssetSource("audio/audio1.mp3"),
       ); // Plays the audio from assets if it is paused
     }
     setState(() {
