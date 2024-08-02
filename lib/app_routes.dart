@@ -9,4 +9,6 @@ class AppRoutes {
   static const wrapPage = "/wrap_widget_page";
   static const responsiveNavbar = "/responsive_navbar";
   static const audioPlayer = "/audio_player";
+  static const contactForm = "/contact_form";
+  static const animatedText = "/animated_text";
 }

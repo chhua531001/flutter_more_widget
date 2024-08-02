@@ -1,9 +1,12 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_more_widget/pages/alert_dialog_page.dart';
 import 'package:flutter_more_widget/pages/animated_menu_page.dart';
 import 'package:flutter_more_widget/app_routes.dart';
 import 'package:flutter_more_widget/pages/animated_search_bar_page.dart';
+import 'package:flutter_more_widget/pages/animated_text_page.dart';
 import 'package:flutter_more_widget/pages/audio_player.dart';
+import 'package:flutter_more_widget/pages/responsive_contact_form.dart';
 import 'package:flutter_more_widget/pages/custom_scroll_view_page.dart';
 import 'package:flutter_more_widget/pages/grid_view_page.dart';
 import 'package:flutter_more_widget/pages/responsive_navbar.dart';
@@ -62,6 +65,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.wrapPage: (context) => const WrapWidgetPage(),
         AppRoutes.responsiveNavbar: (context) => const ResponsiveNavbar(),
         AppRoutes.audioPlayer: (context) => const AudioPlayerWidget(),
+        AppRoutes.contactForm: (context) => ResponsiveContactForm(),
+        AppRoutes.animatedText: (context) => const AnimatedTextPage(),
       },
     );
   }
@@ -195,6 +200,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 //傳送參數到想顯示的頁面
                 Navigator.pushNamed(
                   context,
+                  AppRoutes.animatedText,
+                  arguments: {
+                    "index": 6,
+                  },
+                );
+              },
+              child: const Text("AnimatedTextDemo"),
+            ),
+            const SizedBox(height: 20,),
+            ElevatedButton(
+              onPressed: () {
+                //傳送參數到想顯示的頁面
+                Navigator.pushNamed(
+                  context,
                   AppRoutes.alertDialogPage,
                   arguments: {
                     "index": 5,
@@ -251,6 +270,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 //傳送參數到想顯示的頁面
                 Navigator.pushNamed(
                   context,
+                  AppRoutes.contactForm,
+                  arguments: {
+                    "index": 6,
+                  },
+                );
+              },
+              child: const Text("ResponsiveContactFormDemo"),
+            ),
+            const SizedBox(height: 20,),
+            ElevatedButton(
+              onPressed: () {
+                //傳送參數到想顯示的頁面
+                Navigator.pushNamed(
+                  context,
                   AppRoutes.audioPlayer,
                   arguments: {
                     "index": 6,
@@ -259,6 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text("AudioPlayerDemo"),
             ),
+            const SizedBox(height: 20,),
           ],
         ),
       ),

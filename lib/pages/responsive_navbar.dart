@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more_widget/widgets/responsive.dart';
 
 class ResponsiveNavbar extends StatefulWidget {
   const ResponsiveNavbar({super.key});
@@ -12,7 +13,6 @@ class _ResponsiveNavbarState extends State<ResponsiveNavbar> {
   double collapsAbleHeight = 0.0;
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Responsive Navbar Demo"),
@@ -38,7 +38,7 @@ class _ResponsiveNavbarState extends State<ResponsiveNavbar> {
                     ),
                   ),
                   // If screen width is less than 650 show the menu button (mobile view), else show the navbar items (web view),
-                  if (width < 650)
+                  if (Responsiv.isMobile(context))
                     NavBarMenuButton(
                       onPressed: () {
                         // Toggle the height of the collapsible menu
@@ -58,7 +58,7 @@ class _ResponsiveNavbarState extends State<ResponsiveNavbar> {
             AnimatedContainer(
               duration: const Duration(milliseconds: 400),
               // height of the collapsible menu based on screen width
-              height: (width < 650) ? collapsAbleHeight : 0,
+              height: (Responsiv.isMobile(context)) ? collapsAbleHeight : 0,
               width: double.infinity,
               color: Colors.black87,
               child: SingleChildScrollView(
